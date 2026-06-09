@@ -1,4 +1,4 @@
-# my-backend
+# Background Job Scheduler API
 
 A monolithic backend API application.
 
@@ -12,9 +12,13 @@ A monolithic backend API application.
 - **Runtime**: Node.js
 - **Language**: TypeScript
 - **Framework**: Express.js
+- **Operations**: Environment validation at startup and request tracing headers
+- **Validation**: Zod schema-based request validation middleware
 - **Features**:
   - CORS
   - Morgan (HTTP logging)
+- **Observability**: Request IDs and HTTP access logs
+- **API Docs**: OpenAPI Swagger UI (/api-docs)
 
 ## Getting Started
 
@@ -62,6 +66,8 @@ Base URL: `http://localhost:4000`
 - **GET** `/` - Root endpoint (API info)
 - **GET** `/api/v1/health` - Health check
 
+- **GET** `/api-docs` - Interactive Swagger UI
+
 ### Example Requests
 ```bash
 # Root info
@@ -76,6 +82,7 @@ curl http://localhost:4000/api/v1/health
 
 ```
 my-backend/
+├── .husky/             # Git hooks
 ├── src/
 │   ├── config/         # Configuration files
 │   ├── middlewares/    # Custom middlewares
@@ -102,15 +109,14 @@ my-backend/
 ## Environment Variables
 
 | Variable | Description | Default |
-|----------|-------------|---------||
+| --- | --- | --- |
 | `PORT` | Server port | `4000` |
 | `NODE_ENV` | Environment | `development` |
 | `ALLOWED_ORIGIN` | CORS allowed origin | `http://localhost:3000` |
 
-
 ## About this Scaffold
 
-This project was generated using the @ifecodes/backend-template scaffold. You can recreate or customize this scaffold using the CLI: 
+This project was generated using the @ifecodes/backend-template scaffold. You can recreate or customize this scaffold using the CLI:
 
 - Run without installing (recommended): `npx ifecodes-template`
 - Install globally: `npm i -g @ifecodes/backend-template` and run `ifecodes-template`
