@@ -3,9 +3,6 @@ name: Background Job CI/CD
 on:
   push:
     branches: [main]
-    paths:
-      - 'client/**'
-      - 'server/**'
 
 jobs:
   # ------------------------
