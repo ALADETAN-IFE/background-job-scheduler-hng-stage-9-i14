@@ -14,7 +14,7 @@ router.use(
   "/api-docs",
   swaggerUi.serve,
   (req: Request, res: Response, next: NextFunction) => {
-    const projectName = "my-backend";
+    const projectName = "Webhook Background Job Scheduler";
     const baseUrl = `${req.protocol}://${req.get("host")}`;
     const spec = routeRegistry.generateOpenAPI(projectName, "1.0.0", baseUrl);
     const options = {
