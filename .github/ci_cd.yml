@@ -1,0 +1,89 @@
+name: Background Job CI/CD
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'client/**'
+      - 'server/**'
+
+jobs:
+  # ------------------------
+  # CI - Test, Lint & Typecheck
+  # ------------------------
+
+  test_fe:
+    name: FE Test & Lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+          cache-dependency-path: '**/pnpm-lock.yaml'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint with Prettier
+        run: pnpm check-format
+
+      - name: Lint with ESLint
+        run: pnpm lint
+
+      - name: Run typecheck
+        run: npx tsc --noEmit
+
+      - name: Build application
+        run: pnpm build
+
+  test_be:
+    name: BE Test & Lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+          cache-dependency-path: '**/pnpm-lock.yaml'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint with Prettier
+        run: pnpm check-format
+
+      - name: Lint with ESLint
+        run: pnpm lint
+
+      - name: Run typecheck
+        run: npx tsc --noEmit
+
+      - name: Build application
+        run: pnpm build
