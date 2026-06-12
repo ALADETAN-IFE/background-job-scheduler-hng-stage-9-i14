@@ -9,9 +9,14 @@ function compare(a: HeapNode, b: HeapNode): boolean {
   if (a.effective_priority !== b.effective_priority) {
     return a.effective_priority < b.effective_priority;
   }
-  const aTime = a.scheduled_at ?? a.created_at;
-  const bTime = b.scheduled_at ?? b.created_at;
-  return aTime < bTime;
+
+  const aSched = a.scheduled_at ?? 0;
+  const bSched = b.scheduled_at ?? 0;
+  if (aSched !== bSched) {
+    return aSched < bSched;
+  }
+
+  return a.created_at < b.created_at;
 }
 
 export class MinHeap {
