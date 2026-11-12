@@ -8,11 +8,25 @@ on:
       - 'server/**'
 
 jobs:
+  repoguard-security-scan:
+    name: RepoGuard Pre-Execution Security Gate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - name: Run RepoGuard Security Check
+        uses: ALADETAN-IFE/repoguard-action@69e6ce176271ba94e9d80b8cbecce6f8eb2569d3 # v1
+        with:
+          minimum-severity: medium
+          fail-on: high
   # ------------------------
   # CI - Test, Lint & Typecheck
   # ------------------------
 
   test_fe:
+    needs: [repoguard-security-scan]
     name: FE Test & Lint
     runs-on: ubuntu-latest
     defaults:
@@ -51,6 +65,7 @@ jobs:
         run: pnpm build
 
   test_be:
+    needs: [repoguard-security-scan]
     name: BE Test & Lint
     runs-on: ubuntu-latest
     defaults:
