@@ -6,6 +6,6 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "npm"
-    directory: "/template/base/ts"
+    directory: "/server"
     schedule:
       interval: "weekly"
