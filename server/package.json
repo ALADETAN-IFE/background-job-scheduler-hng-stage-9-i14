@@ -41,7 +41,7 @@
     "@types/swagger-ui-express": "^4.1.8",
     "@types/uuid": "^11.0.0",
     "@typescript-eslint/eslint-plugin": "^8.50.1",
-    "@typescript-eslint/parser": "^8.50.1",
+    "@typescript-eslint/parser": "^8.72.2",
     "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
