@@ -1,10 +1,11 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/"
+    directory: "/client"
     schedule:
       interval: "weekly"
-      day: "monday"
-      time: "08:00"
-      timezone: "UTC"
-    open-pull-requests-limit: 10
+
+  - package-ecosystem: "npm"
+    directory: "/template/base/ts"
+    schedule:
+      interval: "weekly"
